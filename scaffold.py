@@ -31,7 +31,7 @@ def main():
     y = y + np.random.normal(0.0, 5.0, size=n)
     y[20] = y[20] + 100.0
 
-    metrics, y_test, y_pred, *_ = house_price_pipeline(
+    result = house_price_pipeline(
         X,
         y,
         ratio_num_idx=0,
@@ -43,11 +43,16 @@ def main():
         iqr_k=1.5,
     )
 
+    # house_price_pipeline returns a DICT; unpacking it would yield its keys.
+    metrics = result["test_metrics"]
+    y_test = result["y_test"]
+    y_pred = result["y_test_pred"]
+
     print("Test metrics:")
     print("  MAE :", round(float(metrics["mae"]), 4))
     print("  RMSE:", round(float(metrics["rmse"]), 4))
     print("  R^2 :", round(float(metrics["r2"]), 4))
-    print("Residual summary:", metrics["residuals"])
+    print("Residual summary:", metrics["residual_summary"])
     print("y_test[:5]:", np.round(y_test[:5], 3))
     print("y_pred[:5]:", np.round(y_pred[:5], 3))
 
