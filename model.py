@@ -76,11 +76,24 @@ def one_hot_encode(labels):
 
     return (labels[:, None] == unq[None, :]).astype(float)
 
-# Step 7 - fit_standardizer (not yet solved)
-# TODO: implement
+# Step 7 - fit_standardizer
+def fit_standardizer(X):
+    # TODO: Compute per-column mean and std used to standardize features...
+    X = np.asarray(X, dtype=float)
 
-# Step 8 - apply_standardizer (not yet solved)
-# TODO: implement
+    mean = np.mean(X, axis =0)
+    std = np.std(X, axis=0)
+
+    std = np.where(std == 0, 1.0, std)
+
+    return mean, std
+
+# Step 8 - apply_standardizer
+def apply_standardizer(X, mean, std):
+    # TODO: Return the scaled matrix (X - mean) / std via broadcasting.
+    X = np.asarray(X, dtype=float)
+
+    return (X - mean)/std
 
 # Step 9 - add_bias_column (not yet solved)
 # TODO: implement
