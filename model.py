@@ -100,8 +100,11 @@ def add_bias_column(X):
     # TODO: Prepend a column of ones to a 2-D feature matrix X...
     return np.c_[np.ones(X.shape[0]), X]
 
-# Step 10 - make_shuffled_indices (not yet solved)
-# TODO: implement
+# Step 10 - make_shuffled_indices
+def make_shuffled_indices(n_samples, seed):
+    # TODO: Create a reproducibly shuffled permutation of row indices.
+    
+    return np.random.RandomState(seed).permutation(n_samples)
 
 # Step 11 - partition_indices (not yet solved)
 # TODO: implement
